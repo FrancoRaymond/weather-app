@@ -1,39 +1,154 @@
 import { useState } from "react";
+import { useAppContext } from "../context/Context";
 import down from '../assets/images/arrow-down.svg'
 import unitsIcon from '../assets/images/icon-units.svg'
+import checkMark from '../assets/images/icon-checkmark.svg'
 
 export default function CustomSelect() {
+  const { 
+    temperature, 
+    setTemperature, 
+    windSpeed, 
+    setWindSpeed, 
+    precipitation, 
+    setPrecipitation 
+  } = useAppContext();
+  
   const [open, setOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>("Units");
-  const options: string[] = ["Apple", "Banana", "Cherry"];
-
+  const defaultValue:string ="Units";
+ 
   return (
-    <div className="relative w-fit cursor-pointer text-sm">
+    <div className="relative w-fit text-sm text-white">
       <button
         onClick={() => setOpen(!open)}
-        className="w-fit flex text-white justify-between items-center px-2 gap-2 py-1 rounded-lg bg-gray-500"
+        className="w-fit flex justify-between items-center px-2 gap-2 py-1 rounded-lg bg-[#25253f]"
       >
         <img src={unitsIcon} alt="" className="size-4" />
-        {selected}
+        {defaultValue}
         <img src={down} alt=""  className="size-5"/>
       </button>
 
       {open && (
-        <ul className="absolute mt-1 w-full border rounded-lg bg-white shadow">
-          {options.map((opt, i) => (
-            <li
-              key={i}
-              onClick={() => {
-                setSelected(opt);
-                setOpen(false);
-              }}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+        <div className="absolute mt-1 w-[200px] rounded-lg bg-[#25253f] border border-gray-700 shadow right-0 overflow-hidden p-2">
+          <span className="font-semibold ml-1.5">Switch to imperial</span>
+          <div className="flex flex-col items-start mt-2 gap-1 border-b border-gray-700 py-1.5">
+            <span className="text-gray-300 font-semibold ml-1.5">Temperature</span>
+            <button 
+              onClick={() => setTemperature('celsius')} 
+              className={` ${temperature === 'celsius' ? 'bg-[#2f2f49]' : ''} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
             >
-              {opt}
-            </li>
-          ))}
-        </ul>
+              <span className="text-[12px]">Celsius(C)</span>
+              <img src={checkMark} alt="" className={`${temperature === 'celsius' ? 'block' : 'hidden'}`}/>
+            </button>
+            <button 
+              onClick={() => setTemperature('fahrenheit')} 
+              className={` ${temperature === 'celsius' ? '' : 'bg-[#2f2f49]'} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
+            >
+              <span className="text-[12px]">Fahrenheit(F)</span>
+              <img src={checkMark} alt="" className={`${temperature === 'celsius' ? 'hidden' : 'block'}`}/>
+            </button>
+          </div>
+          <div className="flex flex-col items-start mt-2 gap-1 border-b border-gray-700 py-1.5">
+            <span className="text-gray-300 font-semibold ml-1.5">Wind Speed</span>
+            <button 
+              onClick={() => setWindSpeed('km/h')} 
+              className={` ${windSpeed === 'km/h' ? 'bg-[#2f2f49]' : ''} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
+            >
+              <span className="text-[12px]">km/h</span>
+              <img src={checkMark} alt="" className={`${windSpeed === 'km/h' ? 'block' : 'hidden'}`}/>
+            </button>
+            <button 
+              onClick={() => setWindSpeed('mph')} 
+              className={` ${windSpeed === 'km/h' ? '' : 'bg-[#2f2f49]'} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
+            >
+              <span className="text-[12px]">mph</span>
+              <img src={checkMark} alt="" className={`${windSpeed === 'km/h' ? 'hidden' : 'block'}`}/>
+            </button>
+          </div>
+          <div className="flex flex-col items-start mt-2 gap-1 border-b border-gray-700 py-1.5">
+            <span className="text-gray-300 font-semibold ml-1.5">Precipitation</span>
+            <button 
+              onClick={() => setPrecipitation('millimeters')} 
+              className={` ${precipitation === 'millimeters' ? 'bg-[#2f2f49]' : ''} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
+            >
+              <span className="text-[12px]">Millimeters(mm)</span>
+              <img src={checkMark} alt="" className={`${precipitation === 'millimeters' ? 'block' : 'hidden'}`}/>
+            </button>
+            <button 
+              onClick={() => setPrecipitation('inches')} 
+              className={` ${precipitation === 'millimeters' ? '' : 'bg-[#2f2f49]'} font-semibold px-1.5 py-2 hover:bg-gray-700 rounded-md w-full text-left cursor-pointer flex items-center justify-between`}
+            >
+              <span className="text-[12px]">Inches(in)</span>
+              <img src={checkMark} alt="" className={`${precipitation=== 'millimeters' ? 'hidden' : 'block'}`}/>
+            </button>
+          </div>
+        </div>
       )}
     </div>
   );
 }
+
+/*
+import { useState, createContext, useContext } from "react";
+import type { ReactNode } from "react";
+import Navbar from "./components/Navbar";
+
+// Define context type
+type AppContextType = {
+  temperature: string;
+  setTemperature: React.Dispatch<React.SetStateAction<string>>;
+  windSpeed: string;
+  setWindSpeed: React.Dispatch<React.SetStateAction<string>>;
+  precipitation: string;
+  setPrecipitation: React.Dispatch<React.SetStateAction<string>>;
+};
+
+// Props type for provider
+type WeatherAppProviderProps = {
+  children: ReactNode;
+};
+
+// Create context with default undefined
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+function AppProvider({ children }: WeatherAppProviderProps) {
+  const [temperature, setTemperature] = useState<string>("celcius");
+  const [windSpeed, setWindSpeed] = useState<string>("km/h");
+  const [precipitation, setPrecipitation] = useState<string>("millimeters");
+
+  return (
+    <AppContext.Provider
+      value={{
+        temperature,
+        setTemperature,
+        windSpeed,
+        setWindSpeed,
+        precipitation,
+        setPrecipitation,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
+}
+
+// Custom hook
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (!context) {
+    throw new Error("useAppContext must be used inside AppProvider");
+  }
+  return context;
+};
+
+// Your root App
+function App() {
+  return (
+    <AppProvider>
+      <Navbar />
+    </AppProvider>
+  );
+}
+
+export default App;
+*/

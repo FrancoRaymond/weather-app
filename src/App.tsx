@@ -1,12 +1,15 @@
+import { AppProvider } from './context/Context';
 import Navbar from "./components/Navbar"
+import ErrorPage from './components/ErrorPage'
 
 function App() {
+
   
   return (
-    <div className="">
+    <AppProvider>
       <Navbar />
-     
-    </div>
+      <ErrorPage />
+    </AppProvider>
   )
 }
 
