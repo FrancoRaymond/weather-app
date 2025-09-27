@@ -1,6 +1,6 @@
 import { AppProvider } from './context/Context';
 import Navbar from "./components/Navbar"
-import ErrorPage from './components/ErrorPage'
+import Header from './components/Header';
 
 function App() {
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <AppProvider>
       <Navbar />
-      <ErrorPage />
+      <Header />
     </AppProvider>
   )
 }

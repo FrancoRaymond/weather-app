@@ -4,7 +4,7 @@ import down from '../assets/images/arrow-down.svg'
 import unitsIcon from '../assets/images/icon-units.svg'
 import checkMark from '../assets/images/icon-checkmark.svg'
 
-export default function CustomSelect() {
+export default function UnitsSelect() {
   const { 
     temperature, 
     setTemperature, 
@@ -18,7 +18,7 @@ export default function CustomSelect() {
   const defaultValue:string ="Units";
  
   return (
-    <div className="relative w-fit text-sm text-white">
+    <div className="relative w-fit text-[12px] text-white">
       <button
         onClick={() => setOpen(!open)}
         className="w-fit flex justify-between items-center px-2 gap-2 py-1 rounded-lg bg-[#25253f]"
@@ -87,68 +87,3 @@ export default function CustomSelect() {
     </div>
   );
 }
-
-/*
-import { useState, createContext, useContext } from "react";
-import type { ReactNode } from "react";
-import Navbar from "./components/Navbar";
-
-// Define context type
-type AppContextType = {
-  temperature: string;
-  setTemperature: React.Dispatch<React.SetStateAction<string>>;
-  windSpeed: string;
-  setWindSpeed: React.Dispatch<React.SetStateAction<string>>;
-  precipitation: string;
-  setPrecipitation: React.Dispatch<React.SetStateAction<string>>;
-};
-
-// Props type for provider
-type WeatherAppProviderProps = {
-  children: ReactNode;
-};
-
-// Create context with default undefined
-const AppContext = createContext<AppContextType | undefined>(undefined);
-
-function AppProvider({ children }: WeatherAppProviderProps) {
-  const [temperature, setTemperature] = useState<string>("celcius");
-  const [windSpeed, setWindSpeed] = useState<string>("km/h");
-  const [precipitation, setPrecipitation] = useState<string>("millimeters");
-
-  return (
-    <AppContext.Provider
-      value={{
-        temperature,
-        setTemperature,
-        windSpeed,
-        setWindSpeed,
-        precipitation,
-        setPrecipitation,
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
-}
-
-// Custom hook
-export const useAppContext = () => {
-  const context = useContext(AppContext);
-  if (!context) {
-    throw new Error("useAppContext must be used inside AppProvider");
-  }
-  return context;
-};
-
-// Your root App
-function App() {
-  return (
-    <AppProvider>
-      <Navbar />
-    </AppProvider>
-  );
-}
-
-export default App;
-*/
