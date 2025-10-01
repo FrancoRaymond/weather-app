@@ -8,7 +8,7 @@ export default function UnitsSelect() {
     const { day, setDay } = useAppContext();
   
   return (
-    <div className="relative w-fit text-sm text-white mx-auto">
+    <div className="relative w-fit text-sm text-white mx-auto z-10">
       <button
         onClick={() => setOpen(!open)}
         className="w-fit text-[12px] flex justify-between items-center px-2 gap-2 py-1 rounded-lg bg-[#25253f]"

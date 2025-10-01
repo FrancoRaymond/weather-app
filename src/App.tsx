@@ -1,6 +1,7 @@
 import { AppProvider } from './context/Context';
 import Navbar from "./components/Navbar"
 import Header from './components/Header';
+import Loader from './components/Loader';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <AppProvider>
       <Navbar />
       <Header />
+      <Loader />
     </AppProvider>
   )
 }

@@ -6,12 +6,11 @@ const { city, setCity } = useAppContext()
 
 const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
-    
   };
   return (
     <div className="px-2.5 sm:px-5 md:px-10 lg:px-24 mt-20 flex flex-col gap-5 items-center">
         <h2 className='text-white font-bold text-3xl sm:text-4xl'>How's the sky looking today?</h2>
-        <form action="" onSubmit={(e) => handleSubmit(e)} className="flex items-center gap-2 w-full justify-center max-w-[500px]">
+        <form action="" onSubmit={(e) => handleSubmit(e)} className="flex items-center gap-2 mt-4 w-full justify-center max-w-[500px]">
             <div className="bg-[#25253f] flex items-center py-1 px-3 rounded-md">
                 <img src={search} alt="" className="size-4.5"/>
                 <input 
