@@ -29,7 +29,7 @@ export default function UnitsSelect() {
       </button>
 
       {open && (
-        <div className="absolute mt-1 w-[200px] rounded-lg bg-[#25253f] border border-gray-700 shadow right-0 overflow-hidden p-2">
+        <div className="absolute z-10 mt-1 w-[200px] rounded-lg bg-[#25253f] border border-gray-700 shadow right-0 overflow-hidden p-2">
           <span className="font-semibold ml-1.5">Switch to imperial</span>
           <div className="flex flex-col items-start mt-2 gap-1 border-b border-gray-700 py-1.5">
             <span className="text-gray-300 font-semibold ml-1.5">Temperature</span>
